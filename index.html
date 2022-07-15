@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempo</title>
+    <meta name="description" content="Tempo is a PWA tool to mesure time">
+    <meta name="author" content="aloisdg">
+    <meta name="theme-color" content="#202B38">
+    <link rel="manifest" href="tempo.webmanifest">
+    <!-- <link rel="icon" href="d100.svg"> -->
+    <link rel="stylesheet" href="water.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="lib.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>
+            <span>Tempo</span>
+        </h1>
+        <!-- <button class="add-button"><img src="cloud-download.svg" alt="install" style="height: 40px;"></button> -->
+    </header>
+    <main>
+        <section>
+            <div class="flex">
+                <div>
+                    <label for="newPlayerName">Name:</label>
+                    <input type="text" name="newPlayerName" id="newPlayerName" value="Jane Doe">
+                </div>
+
+                <div>
+                    <label for="newPlayerGame">Game Time in seconds:</label>
+                    <input type="number" name="newPlayerGame" id="newPlayerGame" min="0" value="600">
+                </div>
+
+                <div>
+                    <label for="newPlayerTurn">Turn Time in seconds:</label>
+                    <input type="number" name="newPlayerTurn" id="newPlayerTurn" min="0" value="60">
+                </div>
+                <button type="button" id="addPlayer">Add player</button>
+            </div>
+        </section>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 80px">Current</th>
+                        <th>Name</th>
+                        <th>Game Time</th>
+                        <th>Turn Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <button type="button" class="start" disabled>
+                <img src="./play-button.svg" style="height:42px" />
+                <img src="./pause-button.svg" style="height:42px" class="hidden" />
+            </button>
+            <button type="button" class="next" disabled>
+                <img src="./next-button.svg" style="height:42px" />
+            </button>
+        </section>
+    </main>
+
+    <template id="playerRow">
+        <tr>
+            <td>
+                <div class="hidden">🔥</div>
+                <div class="hidden"><img src="./pause-button.svg" style="height:35px" /></div>
+            </td>
+            <td class="name"></td>
+            <td class="game"></td>
+            <td class="turn"></td>
+        </tr>
+    </template>
+    <script src="app.js"></script>
+</body>
+
+</html>

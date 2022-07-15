@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+button {
+  margin-right: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+header > h1 {
+  display: flex;
+  align-items: center;
+}
+
+header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+main {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 15px;
+}
+
+.currentPlayer {
+  color: var(--code);
+}
+
+thead tr th:nth-child(3),
+tbody tr td:nth-child(3),
+thead tr th:last-child,
+tbody tr td:last-child {
+  text-align: right;
+}
+
+tbody {
+  font-size: 32px;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(359deg);
+  }
+}
+
+tbody tr.currentPlayer > td:first-child > div {
+  text-align: center;
+}
+
+tbody tr.currentPlayer > td:first-child > div:first-child {
+  animation-name: rotation;
+  animation-duration: 0.9s;
+  animation-iteration-count: infinite;
+}
+
+main > section:last-child {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+main > section:last-child > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.wait {
+  transition: all 0.45s ease-in;
+}
+
+.roll {
+  transform: rotate(359deg);
+}
+
+@media only screen and (max-width: 540px) {
+  main > section:last-child {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+}
