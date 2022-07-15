@@ -9,12 +9,16 @@ body {
   margin-bottom: 0;
 }
 
-button {
-  margin-right: 0;
+input {
+  margin: 0;
 }
 
 .flex {
   display: flex;
+}
+
+.grid {
+  display: grid;
 }
 
 .hidden {
@@ -46,15 +50,20 @@ main {
   color: var(--code);
 }
 
-thead tr th:nth-child(3),
-tbody tr td:nth-child(3),
-thead tr th:last-child,
-tbody tr td:last-child {
+.thead .gameRow section:nth-child(3),
+.tbody .gameRow section:nth-child(3),
+.thead .gameRow section:nth-child(4),
+.tbody .gameRow section:nth-child(4) {
   text-align: right;
 }
 
-tbody {
+.tbody {
   font-size: 32px;
+}
+
+.gameRow {
+  display: grid;
+  grid-template-columns: 80px 2fr 1fr 1fr;
 }
 
 @keyframes rotation {
@@ -66,11 +75,11 @@ tbody {
   }
 }
 
-tbody tr.currentPlayer > td:first-child > div {
+.tbody .currentPlayer > section:first-child > div {
   text-align: center;
 }
 
-tbody tr.currentPlayer > td:first-child > div:first-child {
+.tbody .currentPlayer > section:first-child > div:first-child {
   animation-name: rotation;
   animation-duration: 0.9s;
   animation-iteration-count: infinite;
@@ -96,9 +105,43 @@ main > section:last-child > div {
   transform: rotate(359deg);
 }
 
+.w-full {
+  width: 100%;
+}
+
+.newPlayerSection {
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.currentPause {
+  height: 35px;
+}
+@media only screen and (max-width: 760px) {
+  .newPlayerSection {
+    grid-template-columns: 1fr;
+  }
+
+  .tbody {
+    font-size: 24px;
+  }
+
+  .currentPause {
+    height: 24px;
+  }
+}
+
 @media only screen and (max-width: 540px) {
   main > section:last-child {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
+  }
+  .tbody {
+    font-size: 16px;
+  }
+
+  .currentPause {
+    height: 16px;
   }
 }

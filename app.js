@@ -18,7 +18,7 @@ const updatePlayerGame = (gameElement, name) => {
 
 const updatePlayerTurn = (gameElement, turnElement, name) => {
   const current = parseTime(turnElement.textContent);
-  if (current === 1) {
+  if (current <= 1) {
     clearInterval(_interval);
     _interval = setInterval(updatePlayerGame, 1000, gameElement, name);
   }
@@ -27,20 +27,20 @@ const updatePlayerTurn = (gameElement, turnElement, name) => {
 };
 
 const displayPlayer = (name, game, turn) => {
-  const tbody = document.querySelector("tbody");
+  const tbody = document.querySelector(".tbody");
   const template = document.querySelector("#playerRow");
 
   const clone = template.content.cloneNode(true);
-  const td = clone.querySelectorAll("td");
+  const sections = clone.querySelectorAll("section");
 
   if (tbody.children.length === 0) {
     clone.firstElementChild.classList.add("currentPlayer");
-    // td[0].textContent = "";
+    // sections[0].textContent = "";
   }
-  td[1].textContent = name;
-  td[2].textContent = game;
-  td[3].textContent = turn;
-  td[3].dataset.start = turn;
+  sections[1].textContent = name;
+  sections[2].textContent = game;
+  sections[3].textContent = turn;
+  sections[3].dataset.start = turn;
   tbody.appendChild(clone);
   _playerCount++;
   next.disabled = _playerCount < 2;
@@ -62,17 +62,17 @@ addPlayer.onclick = () => {
 start.onclick = (e) => {
   e.target.firstElementChild.classList.toggle("hidden");
   e.target.lastElementChild.classList.toggle("hidden");
-  const tds = document.querySelectorAll("tbody tr.currentPlayer td");
+  const [current, name, game, turn] = document.querySelectorAll(".tbody .gameRow.currentPlayer section");
   if (_isStarted) {
     clearInterval(_interval);
-    tds[0].firstElementChild.classList.add("hidden");
-    tds[0].lastElementChild.classList.remove("hidden");
+    current.firstElementChild.classList.add("hidden");
+    current.lastElementChild.classList.remove("hidden");
     _isStarted = false;
     return;
   }
-  const [td, name, game, turn] = tds;
-  td.firstElementChild.classList.remove("hidden");
-  td.lastElementChild.classList.add("hidden");
+  current.firstElementChild.classList.remove("hidden");
+  current.lastElementChild.classList.add("hidden");
+  // if (turn)
   _interval = setInterval(updatePlayerTurn, 1000, game, turn, name.textContent);
   _isStarted = true;
 };
@@ -84,12 +84,12 @@ next.onclick = () => {
     start.lastElementChild.classList.toggle("hidden");
   }
   clearInterval(_interval);
-  const previousPlayer = document.querySelector("tbody tr.currentPlayer");
+  const previousPlayer = document.querySelector(".tbody .gameRow.currentPlayer");
   previousPlayer.classList.remove("currentPlayer");
   previousPlayer.firstElementChild.firstElementChild.classList.add("hidden");
   previousPlayer.firstElementChild.lastElementChild.classList.add("hidden");
   const [_1, _2, previousGame, previousTurn] =
-    previousPlayer.querySelectorAll("td");
+    previousPlayer.querySelectorAll("section");
   previousGame.textContent = formatTime(
     parseTime(previousGame.textContent) + parseTime(previousTurn.textContent)
   );
@@ -99,7 +99,7 @@ next.onclick = () => {
     : previousPlayer.parentElement.firstElementChild;
   nextPlayer.classList.add("currentPlayer");
   nextPlayer.firstElementChild.firstElementChild.classList.remove("hidden");
-  const [_, name, game, turn] = nextPlayer.querySelectorAll("td");
+  const [_, name, game, turn] = nextPlayer.querySelectorAll("section");
   _interval = setInterval(updatePlayerTurn, 1000, game, turn, name.textContent);
 };
 

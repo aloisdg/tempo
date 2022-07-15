@@ -25,32 +25,41 @@
     </header>
     <main>
         <section>
-            <div class="flex">
+            <div class="newPlayerSection grid">
                 <div>
                     <label for="newPlayerName">Name:</label>
-                    <input type="text" name="newPlayerName" id="newPlayerName" value="Jane Doe">
+                    <input type="text" name="newPlayerName" id="newPlayerName" value="Jane Doe" class="w-full">
                 </div>
 
                 <div>
                     <label for="newPlayerGame">Game Time in seconds:</label>
-                    <input type="number" name="newPlayerGame" id="newPlayerGame" min="0" value="600">
+                    <input type="number" name="newPlayerGame" id="newPlayerGame" min="0" value="600" class="w-full">
                 </div>
 
                 <div>
                     <label for="newPlayerTurn">Turn Time in seconds:</label>
-                    <input type="number" name="newPlayerTurn" id="newPlayerTurn" min="0" value="60">
+                    <input type="number" name="newPlayerTurn" id="newPlayerTurn" min="0" value="60" class="w-full">
                 </div>
-                <button type="button" id="addPlayer">Add player</button>
             </div>
+            <button class="w-full" type="button" id="addPlayer">Add player</button>
         </section>
         <section>
+            <div class="table">
+                <div class="thead">
+                    <div class="gameRow">
+                        <section>Current</section>
+                        <section>Name</section>
+                        <section>Game Time</section>
+                        <section>Turn Time</section>
+                    </div>
+                </div>
+                <div class="tbody">
+                </div>
+            </div>
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 80px">Current</th>
-                        <th>Name</th>
-                        <th>Game Time</th>
-                        <th>Turn Time</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -69,15 +78,15 @@
     </main>
 
     <template id="playerRow">
-        <tr>
-            <td>
+        <div class="gameRow">
+            <section>
                 <div class="hidden">🔥</div>
-                <div class="hidden"><img src="./pause-button.svg" style="height:35px" /></div>
-            </td>
-            <td class="name"></td>
-            <td class="game"></td>
-            <td class="turn"></td>
-        </tr>
+                <div class="hidden"><img src="./pause-button.svg" class="currentPause" /></div>
+            </section>
+            <section class="name">Name</section>
+            <section class="game">Game Time</section>
+            <section class="turn">Turn Time</section>
+        </div>
     </template>
     <script src="app.js"></script>
 </body>
